@@ -8,11 +8,19 @@ from tele_bot_tools import *
 
 @bot.message_handler(commands=['start'])
 def hi_msg(message):
-    poster(bot, message.chat.id, 'fff')
+    poster(bot, message.chat.id, 'Кракен тут. Ссылка + сколько')
 
 @bot.message_handler(content_types=['text'])
 def any_messages(msg):
-    poster(bot, msg.chat.id, msg)
+    try:
+        int(msg.message)
+        poster(bot, msg.chat.id, 'Ща')
+    except:
+        if msg.message.find('dribbble.com') > 0:
+            poster(bot, msg.chat.id, 'Сколько?')
+        else:
+            poster(bot, msg.chat.id, 'Давай заново!')
+
     
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
