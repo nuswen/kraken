@@ -12,11 +12,12 @@ def hi_msg(message):
 
 @bot.message_handler(content_types=['text'])
 def any_messages(msg):
+    message = msg.message.text
     try:
-        int(msg.message)
+        int(message)
         poster(bot, msg.chat.id, 'Ща')
     except:
-        if msg.message.find('dribbble.com') > 0:
+        if message.find('dribbble.com') > 0:
             poster(bot, msg.chat.id, 'Сколько?')
         else:
             poster(bot, msg.chat.id, 'Давай заново!')
