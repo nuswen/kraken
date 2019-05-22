@@ -12,7 +12,7 @@ def hi_msg(message):
 
 @bot.message_handler(content_types=['text'])
 def any_messages(msg):
-    message = msg.message.text
+    message = msg.text
     try:
         int(message)
         poster(bot, msg.chat.id, 'Ща')
