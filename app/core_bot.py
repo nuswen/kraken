@@ -8,7 +8,7 @@ from tele_bot_tools import *
 
 @bot.message_handler(commands=['start'])
 def hi_msg(message):
-    poster(bot, msg.chat.id, 'fff')
+    poster(bot, message.chat.id, 'fff')
     
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
