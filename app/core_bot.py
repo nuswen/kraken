@@ -19,6 +19,9 @@ def any_messages(msg):
         poster(bot, msg.chat.id, 'Ща')
     except:
         if message.find('dribbble.com') > 0:
+            u = models.Messages(url=message)
+            db.session.add(u)
+            db.session.commit()
             poster(bot, msg.chat.id, 'Сколько?')
         else:
             poster(bot, msg.chat.id, 'Давай заново!')
