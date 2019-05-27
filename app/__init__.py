@@ -16,12 +16,12 @@ def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return ("!"), 200
 
-@app.route("/")
+@app.route("/zenno/", methods=['POST'])
 def zen():
     ur = models.messages.query.filter_by(id=1).first()
     am = models.messages.query.filter_by(id=2).first()
     re = ur+';'+am
-    return ("hi"), 200
+    return (re), 200
 
 bot.remove_webhook()
 bot.set_webhook(url=environ['app_url']+environ['token'])
