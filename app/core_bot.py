@@ -16,10 +16,14 @@ def any_messages(msg):
     message = msg.text
     try:
         int(message)
+        u = models.messages(id=2, url=int(message))
+        db.session.add(u)
+        db.session.commit()
         poster(bot, msg.chat.id, 'Ща')
     except:
         if message.find('ribbble.com') > 0:
             models.messages.query.filter_by(id=1).delete()
+            models.messages.query.filter_by(id=2).delete()
             db.session.commit()
             u = models.messages(id=1, url=message)
             db.session.add(u)
