@@ -16,7 +16,7 @@ def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return ("!"), 200
 
-@app.route("/zenno/", methods=['POST'])
+@app.route("/zenno/", methods=['GET'])
 def zen():
     #ur = models.messages.query.filter_by(id=1).first()
     #am = models.messages.query.filter_by(id=2).first()
