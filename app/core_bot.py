@@ -5,6 +5,7 @@ import random
 from tele_bot_tools import *
 from app import db
 from app import models
+import time
 
 
 @bot.message_handler(commands=['start'])
@@ -18,6 +19,7 @@ def any_messages(msg):
         int(message)
         u = models.messages(id=2, url=message)
         db.session.add(u)
+
         try:
             db.session.commit()
             poster(bot, msg.chat.id, 'Ща')
@@ -31,6 +33,7 @@ def any_messages(msg):
             u = models.messages(id=1, url=message)
             db.session.add(u)
             db.session.commit()
+            time.sleep(5)
             poster(bot, msg.chat.id, 'Сколько?')
         else:
             poster(bot, msg.chat.id, 'Давай заново!')
