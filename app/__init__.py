@@ -16,7 +16,8 @@ def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     ur = models.messages.query.filter_by(id=1).first()
     am = models.messages.query.filter_by(id=2).first()
-    return (ur+';'+str(am)), 200
+    re = ur+';'+str(am)
+    return (re), 200
 
 
 bot.remove_webhook()
