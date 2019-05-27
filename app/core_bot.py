@@ -22,7 +22,7 @@ def any_messages(msg):
 
         try:
             db.session.commit()
-            poster(bot, msg.chat.id, models.messages.query.filter_by(id=1).first())
+            poster(bot, msg.chat.id, 'Ща')
         except:
             poster(bot, msg.chat.id, 'Сначала ссылку')
     except:

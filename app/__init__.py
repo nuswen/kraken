@@ -20,7 +20,7 @@ def getMessage():
 def zen():
     ur = models.messages.query.filter_by(id=1).first()
     am = models.messages.query.filter_by(id=2).first()
-    re = '!'
+    re = ur.url + ';' + am.url
     return (re), 200
 
 bot.remove_webhook()
