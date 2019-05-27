@@ -14,10 +14,7 @@ from app import core_bot, models
 @app.route("/"+environ['token'], methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    ur = models.messages.query.filter_by(id=1).first()
-    am = models.messages.query.filter_by(id=2).first()
-    re = ur+';'
-    return (re), 200
+    return ("!"), 200
 
 
 bot.remove_webhook()
