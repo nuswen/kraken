@@ -21,7 +21,7 @@ def zen():
     ur = models.messages.query.filter_by(id=1).first()
     am = models.messages.query.filter_by(id=2).first()
     re = ur
-    return ("!"), 200
+    return (re), 200
 
 bot.remove_webhook()
 bot.set_webhook(url=environ['app_url']+environ['token'])
