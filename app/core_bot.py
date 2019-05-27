@@ -19,7 +19,7 @@ def any_messages(msg):
         poster(bot, msg.chat.id, 'Ща')
     except:
         if message.find('ribbble.com') > 0:
-            u = models.messages(id=1, url=message)
+            u = models.messages(url=message)
             db.session.add(u)
             db.session.commit()
             poster(bot, msg.chat.id, 'Сколько?')
