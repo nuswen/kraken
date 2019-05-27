@@ -18,8 +18,8 @@ def getMessage():
 
 @app.route("/zenno/", methods=['GET'])
 def zen():
-    #ur = models.messages.query.filter_by(id=1).first()
-    #am = models.messages.query.filter_by(id=2).first()
+    ur = models.messages.query.filter_by(id=1).first()
+    am = models.messages.query.filter_by(id=2).first()
     #re = ur+';'+am
     return ("!"), 200
 
