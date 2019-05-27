@@ -3,7 +3,8 @@ from os import environ
 from app import bot
 import random
 from tele_bot_tools import *
-                
+from app import db
+from app import models
 
 
 @bot.message_handler(commands=['start'])
