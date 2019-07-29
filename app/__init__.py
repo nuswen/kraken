@@ -24,8 +24,9 @@ def zen():
     return (re), 200
 
 @app.route("/prdct/", methods=['POST'])
-def prdct_pst(msg):
-    return ('!'), 200
+def prdct_pst():
+    fu = request.stream.read().decode("utf-8")
+    return (fu), 200
 
 bot.remove_webhook()
 bot.set_webhook(url=environ['app_url']+environ['token'])
