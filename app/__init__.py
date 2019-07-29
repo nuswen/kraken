@@ -24,7 +24,7 @@ def zen():
     return (re), 200
 
 @app.route("/prdct/", methods=['POST'])
-def prdct_pst():
+def prdct_pst(msg):
     return ('!'), 200
 
 bot.remove_webhook()
