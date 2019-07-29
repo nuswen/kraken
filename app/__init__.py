@@ -23,6 +23,10 @@ def zen():
     re = ur.url + ';' + am.url
     return (re), 200
 
+@app.route("/prdct/", methods=['POST'])
+def prdct_pst(msg):
+    return (msg), 200
+
 bot.remove_webhook()
 bot.set_webhook(url=environ['app_url']+environ['token'])
 app.run(host="0.0.0.0", port=environ.get('PORT', 5000))
