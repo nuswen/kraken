@@ -20,20 +20,20 @@ def any_messages(msg):
         u = models.messages(id=2, url=message)
         db.session.add(u)
 
-        #try:
-        db.session.commit()
-        u = models.messages.query.filter_by(id=1).first()
-        url = u.url
-        u = models.messages.query.filter_by(id=2).first()
-        amount = u.url
+        try:
+            db.session.commit()
+            u = models.messages.query.filter_by(id=1).first()
+            url = u.url
+            u = models.messages.query.filter_by(id=2).first()
+            amount = u.url
 
-        pr = models.Product(Url=url, Amount=amount)
-        db.session.add(pr)
-        db.session.commit()
+            pr = models.Product(Url=url, Amount=amount)
+            db.session.add(pr)
+            db.session.commit()
 
-        poster(bot, msg.chat.id, 'Ща')
-        #except:
-        poster(bot, msg.chat.id, 'Сначала ссылку')
+            poster(bot, msg.chat.id, 'Ща')
+        except Exception as e:
+            poster(bot, msg.chat.id, 'Сначала ссылку' + e+ '\n' + u)
 
     except:
         if message.find('ribbble.com') > 0:
