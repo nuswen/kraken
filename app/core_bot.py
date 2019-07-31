@@ -27,7 +27,7 @@ def any_messages(msg):
             amount = u.url
 
             pr = models.Product(Url=url, Amount=amount)
-            #db.session.add(pr)
+            db.session.add(pr)
             #db.session.commit()
 
             poster(bot, msg.chat.id, 'Ща')
