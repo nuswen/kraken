@@ -33,7 +33,8 @@ def any_messages(msg):
 
             poster(bot, msg.chat.id, 'Ща')
         except:
-        poster(bot, msg.chat.id, 'Сначала ссылку')
+            poster(bot, msg.chat.id, 'Сначала ссылку')
+
     except:
         if message.find('ribbble.com') > 0:
             models.messages.query.filter_by(id=1).delete()
