@@ -35,7 +35,7 @@ def any_messages(msg):
         except Exception as e:
             poster(bot, msg.chat.id, 'Сначала ссылку' + e+ '\n' + u)
 
-    except:
+    except Exception as e:
         if message.find('ribbble.com') > 0:
             models.messages.query.filter_by(id=1).delete()
             models.messages.query.filter_by(id=2).delete()
@@ -46,7 +46,7 @@ def any_messages(msg):
             time.sleep(5)
             poster(bot, msg.chat.id, 'Сколько?')
         else:
-            poster(bot, msg.chat.id, 'Давай заново!')
+            poster(bot, msg.chat.id, 'Давай заново!' + e+ '\n' + u)
 
     
 @bot.callback_query_handler(func=lambda call: True)
