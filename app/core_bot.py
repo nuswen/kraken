@@ -22,6 +22,15 @@ def any_messages(msg):
 
         try:
             db.session.commit()
+            u = models.messages.query.filter_by(id=1).first()
+            url = u.url
+            u = models.messages.query.filter_by(id=2).first()
+            amount = u.url
+
+            pr = models.Product(Url=url, Amount=amount)
+            db.session.add(pr)
+            db.session.commit()
+            
             poster(bot, msg.chat.id, 'Ща')
         except:
             poster(bot, msg.chat.id, 'Сначала ссылку')
