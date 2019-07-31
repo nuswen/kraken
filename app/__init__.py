@@ -2,6 +2,7 @@ from os import environ
 import telebot
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
+import json
 
 bot = telebot.TeleBot(environ['token'])
 
@@ -18,15 +19,27 @@ def getMessage():
 
 @app.route("/zenno/", methods=['GET'])
 def zen():
-    ur = models.messages.query.filter_by(id=1).first()
-    am = models.messages.query.filter_by(id=2).first()
-    re = ur.url + ';' + am.url
-    return (re), 200
+    allPosts = models.messages.query.all()
+    j = []
+    for p in allPosts:
+        j.append ([p.Url, p.Amount])
+    
+    reText = json.dumps(j)
+    return (reText), 200
 
 @app.route("/prdct/", methods=['POST'])
 def prdct_pst():
-    fu = request.stream.read().decode("utf-8")
-    return (fu), 200
+    fu = json.loads(request.stream.read().decode("utf-8"))
+    for i in fu:
+        fPosts = models.messages.query.filter_by(Url=i).first()
+        fPosts.Amount = fPosts.Amount - 1
+        if fPosts.Amount <= 0:
+            fPosts.delete()
+        else:
+            db.session.add(fPosts)
+        db.session.commit()
+
+    return ('ok'), 200
 
 bot.remove_webhook()
 bot.set_webhook(url=environ['app_url']+environ['token'])
