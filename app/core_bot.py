@@ -46,7 +46,7 @@ def any_messages(msg):
             time.sleep(5)
             poster(bot, msg.chat.id, 'Сколько?')
         else:
-            poster(bot, msg.chat.id, 'Давай заново!' + e+ '\n' + u)
+            poster(bot, msg.chat.id, 'Давай заново!' + e+ '\n' + str(u))
 
     
 @bot.callback_query_handler(func=lambda call: True)
