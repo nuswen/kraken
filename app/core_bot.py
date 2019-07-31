@@ -19,9 +19,8 @@ def any_messages(msg):
         int(message)
         u = models.messages(id=2, url=message)
         db.session.add(u)
-
+        db.session.commit()
         try:
-            db.session.commit()
             u = models.messages.query.filter_by(id=1).first()
             url = u.url
             u = models.messages.query.filter_by(id=2).first()
@@ -33,7 +32,7 @@ def any_messages(msg):
 
             poster(bot, msg.chat.id, 'Ща')
         except Exception as e:
-            poster(bot, msg.chat.id, 'Сначала ссылку' + e+ '\n' + u)
+            poster(bot, msg.chat.id, 'Сначала ссылку')
 
     except Exception as e:
         if message.find('ribbble.com') > 0:
@@ -46,7 +45,7 @@ def any_messages(msg):
             time.sleep(5)
             poster(bot, msg.chat.id, 'Сколько?')
         else:
-            poster(bot, msg.chat.id, 'Давай заново!' + str(e) + '\n' + str(u))
+            poster(bot, msg.chat.id, 'Давай заново!')
 
     
 @bot.callback_query_handler(func=lambda call: True)
