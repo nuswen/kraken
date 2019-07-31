@@ -26,9 +26,9 @@ def any_messages(msg):
             u = models.messages.query.filter_by(id=2).first()
             amount = u.url
 
-            pr = models.Product(Url=url, Amount=amount)
-            db.session.add(pr)
-            db.session.commit()
+            #pr = models.Product(Url=url, Amount=amount)
+            #db.session.add(pr)
+            #db.session.commit()
 
             poster(bot, msg.chat.id, 'Ща')
         except Exception as e:
