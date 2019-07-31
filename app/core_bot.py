@@ -26,7 +26,7 @@ def any_messages(msg):
             u = models.messages.query.filter_by(id=2).first()
             amount = u.url
 
-            pr = models.Product(Id=0,Url=url, Amount=amount)
+            pr = models.Product(Url=url, Amount=amount)
             db.session.add(pr)
             db.session.commit()
 
