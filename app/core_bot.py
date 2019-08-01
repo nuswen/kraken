@@ -31,11 +31,12 @@ def any_messages(msg):
             db.session.commit()
 
             poster(bot, msg.chat.id, 'Ща')
-        except Exception as e:
+        except:
             poster(bot, msg.chat.id, 'Сначала ссылку')
 
     except Exception as e:
         if message.find('ribbble.com') > 0:
+            models.product.query.filter_by(url=message).delete()
             models.messages.query.filter_by(id=1).delete()
             models.messages.query.filter_by(id=2).delete()
             db.session.commit()
