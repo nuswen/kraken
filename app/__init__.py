@@ -20,9 +20,9 @@ def getMessage():
 @app.route("/zenno/", methods=['GET'])
 def zen():
     allPosts = models.product.query.all()
-    j = []
+    j = {'Post':[]}
     for p in allPosts:
-        j.append ([p.url, p.amount])
+        j['Post'].append({'Url':p.url, 'Amount':p.amount})
     
     reText = json.dumps(j)
     return (reText), 200
