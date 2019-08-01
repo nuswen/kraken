@@ -34,7 +34,7 @@ def any_messages(msg):
         except:
             poster(bot, msg.chat.id, 'Сначала ссылку')
 
-    except Exception as e:
+    except:
         if message.find('ribbble.com') > 0:
             models.product.query.filter_by(url=message).delete()
             models.messages.query.filter_by(id=1).delete()
