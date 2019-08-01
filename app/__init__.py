@@ -19,10 +19,10 @@ def getMessage():
 
 @app.route("/zenno/", methods=['GET'])
 def zen():
-    allPosts = models.Product.query.all()
+    allPosts = models.product.query.all()
     j = []
     for p in allPosts:
-        j.append ([p.Url, p.Amount])
+        j.append ([p.url, p.amount])
     
     reText = json.dumps(j)
     return (reText), 200
@@ -31,9 +31,9 @@ def zen():
 def prdct_pst():
     fu = json.loads(request.stream.read().decode("utf-8"))
     for i in fu:
-        fPosts = models.Product.query.filter_by(Url=i).first()
-        fPosts.Amount = fPosts.Amount - 1
-        if fPosts.Amount <= 0:
+        fPosts = models.product.query.filter_by(url=i).first()
+        fPosts.amount = fPosts.amount - 1
+        if fPosts.amount <= 0:
             fPosts.delete()
         else:
             db.session.add(fPosts)
