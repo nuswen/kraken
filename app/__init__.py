@@ -36,7 +36,7 @@ def prdct_pst():
         fPosts.amount = fPosts.amount - 1
         k.append(fPosts.amount)
         
-        if k<=0:
+        if k[0]<=0:
             models.messages.query.filter_by(url=i).delete()
         else:
             db.session.add(fPosts)
