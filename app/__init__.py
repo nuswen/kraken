@@ -35,9 +35,10 @@ def prdct_pst():
         fPosts.amount = fPosts.amount - 1
         if fPosts.amount <= 0:
             models.messages.query.filter_by(url=i).delete()
+            db.session.commit()
         else:
             db.session.add(fPosts)
-        db.session.commit()
+            db.session.commit()
 
     return ('ok'), 200
 
