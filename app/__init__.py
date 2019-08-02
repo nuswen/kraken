@@ -30,18 +30,18 @@ def zen():
 @app.route("/prdct/", methods=['POST'])
 def prdct_pst():
     fu = json.loads(request.stream.read().decode("utf-8"))
-    k = str(fu)
+    k = []
     for i in fu:
         fPosts = models.product.query.filter_by(url=i).first()
         fPosts.amount = fPosts.amount - 1
         if fPosts.amount <= 0:
             models.messages.query.filter_by(url=i).delete()
             db.session.commit()
-            k = 'if'
+            k.append(fPosts.amount)
         else:
             db.session.add(fPosts)
             db.session.commit()
-            k = 'else'
+            k.append(fPosts.amount)
 
     return (k), 200
 
