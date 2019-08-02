@@ -34,6 +34,7 @@ def prdct_pst():
         fPosts = models.product.query.filter_by(url=i).first()
         fPosts.amount = fPosts.amount - 1
         k = fPosts.amount
+        
         if k<=0:
             models.messages.query.filter_by(url=i).delete()
         else:
@@ -41,7 +42,7 @@ def prdct_pst():
             
         db.session.commit()
 
-    return ('ok'), 200
+    return (str(k<=0)), 200
 
 bot.remove_webhook()
 bot.set_webhook(url=environ['app_url']+environ['token'])
