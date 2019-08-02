@@ -30,10 +30,11 @@ def zen():
 @app.route("/prdct/", methods=['POST'])
 def prdct_pst():
     fu = json.loads(request.stream.read().decode("utf-8"))
+    k = []
     for i in fu:
         fPosts = models.product.query.filter_by(url=i).first()
         fPosts.amount = fPosts.amount - 1
-        k = fPosts.amount
+        k.append(fPosts.amount)
         
         if k<=0:
             models.messages.query.filter_by(url=i).delete()
@@ -42,7 +43,7 @@ def prdct_pst():
             
         db.session.commit()
 
-    return (str(k<=0)), 200
+    return (str(k[0]<=0)), 200
 
 bot.remove_webhook()
 bot.set_webhook(url=environ['app_url']+environ['token'])
