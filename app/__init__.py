@@ -34,7 +34,7 @@ def prdct_pst():
     for i in fu:
         fPosts = models.product.query.filter_by(url=i).first()
         fPosts.amount = fPosts.amount - 1
-        if fPosts.amount <= 0:
+        if int(fPosts.amount) <= 0:
             models.messages.query.filter_by(url=i).delete()
             db.session.commit()
             k.append(fPosts.amount)
