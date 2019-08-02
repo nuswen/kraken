@@ -43,7 +43,7 @@ def prdct_pst():
             db.session.commit()
             k.append(fPosts.amount)
 
-    return (k), 200
+    return (str(k)), 200
 
 bot.remove_webhook()
 bot.set_webhook(url=environ['app_url']+environ['token'])
