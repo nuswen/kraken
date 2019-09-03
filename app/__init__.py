@@ -45,7 +45,7 @@ def prdct_pst():
     return ('ok'), 200
 
 @app.route("/del/", methods=['POST'])
-def prdct_pst():
+def prdct_del():
     fu = request.stream.read().decode("utf-8")
     models.product.query.filter_by(url=fu).delete()   
     db.session.commit()
