@@ -31,16 +31,19 @@ def zen():
 def prdct_pst():
     fu = json.loads(request.stream.read().decode("utf-8"))
     for i in fu:
-        fPosts = models.product.query.filter_by(url=i).first()
-        fPosts.amount = fPosts.amount - 1
-        k = fPosts.amount
+        try:
+            fPosts = models.product.query.filter_by(url=i).first()
+            fPosts.amount = fPosts.amount - 1
+            k = fPosts.amount
         
-        if k<=0:
-            models.product.query.filter_by(url=i).delete()
-        else:
-            db.session.add(fPosts)
+            if k<=0:
+                models.product.query.filter_by(url=i).delete()
+            else:
+                db.session.add(fPosts)
             
-        db.session.commit()
+            db.session.commit()
+        except:
+            pass
 
     return ('ok'), 200
 
