@@ -44,6 +44,13 @@ def prdct_pst():
 
     return ('ok'), 200
 
+@app.route("/del/", methods=['POST'])
+def prdct_pst():
+    fu = request.stream.read().decode("utf-8")
+    models.product.query.filter_by(url=fu).delete()   
+    db.session.commit()
+    return ('ok'), 200
+
 bot.remove_webhook()
 bot.set_webhook(url=environ['app_url']+environ['token'])
 app.run(host="0.0.0.0", port=environ.get('PORT', 5000))
