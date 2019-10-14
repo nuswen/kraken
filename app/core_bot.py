@@ -6,6 +6,7 @@ from tele_bot_tools import *
 from app import db
 from app import models
 import time
+import datetime
 
 
 @bot.message_handler(commands=['start'])
@@ -15,7 +16,9 @@ def hi_msg(message):
 @bot.message_handler(commands=['time'])
 def time(message):
     timeT = models.time.query.filter_by(Id=1).first() 
-    poster(bot, message.chat.id, str(timeT.Time))
+    value = datetime.datetime.fromtimestamp(timeT.Time)
+    print(value.strftime('%Y-%m-%d %H:%M:%S'))
+    poster(bot, message.chat.id, 'Я работал - ' value.strftime('%Y-%m-%d %H:%M:%S') ' - отстань!')
 
 @bot.message_handler(content_types=['text'])
 def any_messages(msg):
