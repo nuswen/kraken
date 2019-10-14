@@ -10,4 +10,5 @@ class product(db.Model):
     amount = db.Column(db.Integer)
 
 class time(db.Model):
-    time = db.Column(db.Integer, primary_key=True)
+    Id = db.Column(db.Integer, primary_key=True)
+    Time = db.Column(db.Integer)
