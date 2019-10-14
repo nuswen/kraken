@@ -17,7 +17,7 @@ def hi_msg(message):
 def time(message):
     timeT = models.time.query.filter_by(Id=1).first() 
     value = datetime.datetime.fromtimestamp(timeT.Time)
-    print(value.strftime('%Y-%m-%d %H:%M:%S'))
+    print(value.strftime('%H:%M:%S %d-%m-%Y '))
     poster(bot, message.chat.id, 'Я работал - '+value.strftime('%Y-%m-%d %H:%M:%S')+' - отстань!')
 
 @bot.message_handler(content_types=['text'])
