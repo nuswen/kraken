@@ -57,7 +57,7 @@ def prdct_del():
 @app.route("/time/", methods=['POST'])
 def time():
     fu = request.stream.read().decode("utf-8")
-    timeT = models.product.query.first() 
+    timeT = models.time.query.first() 
     timeT.time = fu  
     db.session.commit()
     return ('ok'), 200
