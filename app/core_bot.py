@@ -14,7 +14,7 @@ def hi_msg(message):
 
 @bot.message_handler(commands=['time'])
 def time(message):
-    timeT = models.time.query.first()
+    timeT = models.time.first()
     poster(bot, message.chat.id, timeT.time)
 
 @bot.message_handler(content_types=['text'])
