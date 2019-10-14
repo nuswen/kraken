@@ -54,6 +54,14 @@ def prdct_del():
     db.session.commit()
     return ('ok'), 200
 
+@app.route("/time/", methods=['POST'])
+def time():
+    fu = request.stream.read().decode("utf-8")
+    timeT = models.product.query.first() 
+    timeT.time = fu  
+    db.session.commit()
+    return ('ok'), 200
+
 bot.remove_webhook()
 bot.set_webhook(url=environ['app_url']+environ['token'])
 app.run(host="0.0.0.0", port=environ.get('PORT', 5000))

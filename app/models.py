@@ -8,3 +8,6 @@ class product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.Text)
     amount = db.Column(db.Integer)
+
+class time(db.Model):
+    time = db.Column(db.Integer, primary_key=True)

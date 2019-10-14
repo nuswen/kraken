@@ -12,6 +12,11 @@ import time
 def hi_msg(message):
     poster(bot, message.chat.id, 'Кракен тут. Ссылка + сколько')
 
+@bot.message_handler(commands=['time'])
+def time(message):
+    timeT = models.product.query.first()
+    poster(bot, message.chat.id, timeT.time)
+
 @bot.message_handler(content_types=['text'])
 def any_messages(msg):
     message = msg.text
