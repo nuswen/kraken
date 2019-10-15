@@ -5,7 +5,7 @@ import random
 from tele_bot_tools import *
 from app import db
 from app import models
-import time
+import time as sleeper
 import datetime
 
 
@@ -51,7 +51,7 @@ def any_messages(msg):
             u = models.messages(id=1, url=message)
             db.session.add(u)
             db.session.commit()
-            time.sleep(5)
+            sleeper.sleep(5)
             poster(bot, msg.chat.id, 'Сколько?')
         else:
             poster(bot, msg.chat.id, 'Давай заново!')
