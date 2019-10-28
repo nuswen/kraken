@@ -92,7 +92,7 @@ def time():
     db.session.commit()
     return ('ok'), 200
 
-@app.route("/timeс/", methods=['POST'])
+@app.route("/timec/", methods=['POST'])
 def timec():
     fu = request.stream.read().decode("utf-8")
     timeT = models.time.query.filter_by(Id=2).first() 
