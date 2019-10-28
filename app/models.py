@@ -11,9 +11,9 @@ class product(db.Model):
     amount = db.Column(db.Integer)
 
 class creprod(db.Model):
-    Id = db.Column(db.Integer, primary_key=True)
-    Url = db.Column(db.Text)
-    Amount = db.Column(db.Integer)
+    id = db.Column(db.Integer, primary_key=True)
+    url = db.Column(db.Text)
+    amount = db.Column(db.Integer)
 
 class time(db.Model):
     Id = db.Column(db.Integer, primary_key=True)
