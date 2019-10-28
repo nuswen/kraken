@@ -25,16 +25,18 @@ def any_messages(msg):
     message = msg.text
     try:
         int(message)
-        u = models.messages(id=2, url=message)
+        u = models.messages(id=msg.chat.id, amount=int(message))
         db.session.add(u)
         db.session.commit()
         try:
-            u = models.messages.query.filter_by(id=1).first()
+            u = models.messages.query.filter_by(id=msg.chat.id).first()
             url = u.url
-            u = models.messages.query.filter_by(id=2).first()
-            amount = u.url
-
-            pr = models.product(url=url,  amount= int(amount))
+            amount = u.amount
+            
+            if url.find('ribbble.com') > 0:
+                pr = models.product(url=url,  amount= int(amount))
+            elif url.find('reativemarket.com') > 0:
+                pr = models.crepod(Url=url,  Amount= int(amount))
             db.session.add(pr)
             db.session.commit()
 
@@ -45,15 +47,25 @@ def any_messages(msg):
     except:
         if message.find('ribbble.com') > 0:
             models.product.query.filter_by(url=message).delete()
-            models.messages.query.filter_by(id=1).delete()
-            models.messages.query.filter_by(id=2).delete()
+            models.messages.query.filter_by(id=msg.chat.id).delete()
             db.session.commit()
-            u = models.messages(id=1, url=message)
+            u = models.messages(id=msg.chat.id, url=message)
             db.session.add(u)
             db.session.commit()
             sleeper.sleep(5)
             poster(bot, msg.chat.id, 'Сколько?')
-        else:
+        
+        elif message.find('reativemarket.com') > 0:
+            models.creprod.query.filter_by(url=message).delete()
+            models.messages.query.filter_by(id=msg.chat.id).delete()
+            db.session.commit()
+            u = models.messages(id=msg.chat.id, url=message)
+            db.session.add(u)
+            db.session.commit()
+            sleeper.sleep(5)
+            poster(bot, msg.chat.id, 'Сколько?')
+
+        else: 
             poster(bot, msg.chat.id, 'Давай заново!')
 
     
