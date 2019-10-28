@@ -40,11 +40,11 @@ def any_messages(msg):
             db.session.commit()
 
             poster(bot, msg.chat.id, 'Ща')
-        except:
+        except Exception as e:
+            print(e)
             poster(bot, msg.chat.id, 'Сначала ссылку')
 
-    except Exception as e:
-        print(e)
+    except:
         if message.find('ribbble.com') > 0:
             try:
                 models.product.query.filter_by(url=message).delete()
