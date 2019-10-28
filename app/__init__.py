@@ -27,6 +27,16 @@ def zen():
     reText = json.dumps(j)
     return (reText), 200
 
+@app.route("/zennoc/", methods=['GET'])
+def zen():
+    allPosts = models.creprod.query.all()
+    j = {'Post':[]}
+    for p in allPosts:
+        j['Post'].append({'Url':p.url, 'Amount':p.amount})
+    
+    reText = json.dumps(j)
+    return (reText), 200
+
 @app.route("/prdct/", methods=['POST'])
 def prdct_pst():
     fu = json.loads(request.stream.read().decode("utf-8"))
@@ -58,6 +68,14 @@ def prdct_del():
 def time():
     fu = request.stream.read().decode("utf-8")
     timeT = models.time.query.filter_by(Id=1).first() 
+    timeT.Time = fu  
+    db.session.commit()
+    return ('ok'), 200
+
+@app.route("/timeс/", methods=['POST'])
+def time():
+    fu = request.stream.read().decode("utf-8")
+    timeT = models.time.query.filter_by(Id=2).first() 
     timeT.Time = fu  
     db.session.commit()
     return ('ok'), 200

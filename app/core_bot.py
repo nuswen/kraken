@@ -16,9 +16,10 @@ def hi_msg(message):
 @bot.message_handler(commands=['time'])
 def time(message):
     timeT = models.time.query.filter_by(Id=1).first() 
+    timeTC = models.time.query.filter_by(Id=2).first() 
     value = datetime.datetime.fromtimestamp(timeT.Time+(3600*3))
-    print(value.strftime('%H:%M:%S %d-%m-%Y '))
-    poster(bot, message.chat.id, 'Я работал - '+value.strftime('%Y-%m-%d %H:%M:%S')+' - отстань!')
+    valueC = datetime.datetime.fromtimestamp(timeTC.Time+(3600*3))
+    poster(bot, message.chat.id, 'Я работал по Дриблу - '+value.strftime('%Y-%m-%d %H:%M:%S')+'\n'+ 'Я работал по Креативу - '+valueС.strftime('%Y-%m-%d %H:%M:%S')+'\nотстань!')
 
 @bot.message_handler(content_types=['text'])
 def any_messages(msg):
