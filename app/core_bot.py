@@ -25,8 +25,8 @@ def any_messages(msg):
     message = msg.text
     try:
         int(message)
-        u = models.messages(id=msg.chat.id, amount=int(message))
-        db.session.add(u)
+        u = models.messages.query.filter_by(id=msg.chat.id).first()
+        u.amount = int(message)
         db.session.commit()
         try:
             u = models.messages.query.filter_by(id=msg.chat.id).first()
