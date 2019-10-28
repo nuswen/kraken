@@ -35,7 +35,7 @@ def any_messages(msg):
             if url.find('ribbble.com') > 0:
                 pr = models.product(url=url,  amount= int(amount))
             elif url.find('reativemarket.com') > 0:
-                pr = models.crepod(Url=url,  Amount= int(amount))
+                pr = models.creprod(Url=url,  Amount= int(amount))
             db.session.add(pr)
             db.session.commit()
 
