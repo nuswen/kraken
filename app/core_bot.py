@@ -44,7 +44,8 @@ def any_messages(msg):
         except:
             poster(bot, msg.chat.id, 'Сначала ссылку')
 
-    except:
+    except Exception as e:
+        print(e)
         if message.find('ribbble.com') > 0:
             try:
                 models.product.query.filter_by(url=message).delete()
@@ -62,8 +63,14 @@ def any_messages(msg):
             poster(bot, msg.chat.id, 'Сколько?')
         
         elif message.find('reativemarket.com') > 0:
-            models.creprod.query.filter_by(url=message).delete()
-            models.messages.query.filter_by(id=msg.chat.id).delete()
+            try:
+                models.creprod.query.filter_by(url=message).delete()
+            except:
+                pass
+            try:
+                models.messages.query.filter_by(id=msg.chat.id).delete()
+            except:
+                pass
             db.session.commit()
             u = models.messages(id=msg.chat.id, url=message)
             db.session.add(u)
