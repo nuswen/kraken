@@ -37,6 +37,26 @@ def zenc():
     reText = json.dumps(j)
     return (reText), 200
 
+@app.route("/prdctc/", methods=['POST'])
+def prdct_pst():
+    fu = json.loads(request.stream.read().decode("utf-8"))
+    for i in fu:
+        try:
+            fPosts = models.creprod.query.filter_by(url=i).first()
+            fPosts.amount = fPosts.amount - 1
+            k = fPosts.amount
+        
+            if k<=0:
+                models.creprod.query.filter_by(url=i).delete()
+            else:
+                db.session.add(fPosts)
+            
+            db.session.commit()
+        except:
+            pass
+
+    return ('ok'), 200
+
 @app.route("/prdct/", methods=['POST'])
 def prdct_pst():
     fu = json.loads(request.stream.read().decode("utf-8"))
