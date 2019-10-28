@@ -38,7 +38,7 @@ def zenc():
     return (reText), 200
 
 @app.route("/prdctc/", methods=['POST'])
-def prdct_pst():
+def prdct_pstc():
     fu = json.loads(request.stream.read().decode("utf-8"))
     for i in fu:
         try:
