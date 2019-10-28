@@ -29,7 +29,6 @@ def any_messages(msg):
         u.amount = int(message)
         db.session.commit()
         try:
-            u = models.messages.query.filter_by(id=msg.chat.id).first()
             url = u.url
             amount = u.amount
             
