@@ -28,7 +28,7 @@ def zen():
     return (reText), 200
 
 @app.route("/zennoc/", methods=['GET'])
-def zen():
+def zenc():
     allPosts = models.creprod.query.all()
     j = {'Post':[]}
     for p in allPosts:
@@ -73,7 +73,7 @@ def time():
     return ('ok'), 200
 
 @app.route("/timeс/", methods=['POST'])
-def time():
+def timec():
     fu = request.stream.read().decode("utf-8")
     timeT = models.time.query.filter_by(Id=2).first() 
     timeT.Time = fu  
